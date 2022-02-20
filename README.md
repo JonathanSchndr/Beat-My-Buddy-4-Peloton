@@ -1,29 +1,27 @@
-# Nuxt 3 Minimal Starter
+# Beat my Buddy 4 Peloton
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/378ad9de-8622-4e14-aa91-789ae3daa608/deploy-status)](https://app.netlify.com/sites/stoic-feynman-7ad45d/deploys)
 
-## Setup
+The project was created because I would like to have a notification when my friend has broken my highscore. While searching I found the repository of @ostranme [https://github.com/ostranme/peloton-postman], who collected the info of the Peloton API. Thanks a lot for your preliminary work!
+e
+# PR are welcome
+Pull requests are explicitly welcome. At first it should be possible to monitor the highscore of your friends. But later more statistics and views shall follow. Thanks for your help!
 
-Make sure to install the dependencies
+## Roadmap
 
-```bash
-yarn install
-```
+- Find Peloton users
+- Track the highscore of your friends
+- Log in with your Peloton account
+- Get statistics on Peloton accounts
+- Any other ideas? => Issue / PR
 
-## Development
+## Availability
 
-Start the development server on http://localhost:3000
+We use the Peloton API and there is no official documentation, there may be failures if endpoints change. This is a pure fan project see disclaimer!
 
-```bash
-yarn dev
-```
 
-## Production
+## Disclaimer
 
-Build the application for production:
+Beat my Buddy 4 Peloton is a hobby project and is not affiliated with Peloton.
 
-```bash
-yarn build
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+Peloton and the Peloton logo are trademarks of Peloton Corporation. All other trademarks are property of their respective owners.
