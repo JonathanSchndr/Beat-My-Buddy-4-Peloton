@@ -6,7 +6,7 @@ export default async (url, params = {}, method = 'GET') => {
         'Cache': 'no-cache'
       },
       'mode': 'no-cors',
-      'credentials': 'include',
+      'credentials': 'same-origin',
       method
     };
 

@@ -43,7 +43,7 @@ export default {
   methods: {
     async submit() {
       useAuthStore().login(this.user, this.password)
-        // .then((response) => response.json())
+        .then((response) => response.json())
         .then((data) => console.log(data))
     }
   }
