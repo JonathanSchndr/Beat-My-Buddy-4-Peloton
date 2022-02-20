@@ -1,50 +1,51 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <div class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-      <!--
-        Background overlay, show/hide based on modal state.
-
-        Entering: "ease-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
       <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true"></div>
-
-      <!-- This element is to trick the browser into centering the modal contents. -->
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-      <!--
-        Modal panel, show/hide based on modal state.
-
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
       <div class="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
-        <div>
-          <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
-            <svg class="w-6 h-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <div class="mt-3 text-center sm:mt-5">
-            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Payment successful</h3>
-            <div class="mt-2">
-              <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.</p>
+        <h1 class="mb-4 font-bold text-center">Beat my Buddy 4 Peloton</h1>
+        <div class="space-y-6">
+          <div>
+            <label for="user" class="block text-sm font-medium text-gray-700"> Username or Email address </label>
+            <div class="mt-1">
+              <input v-model="user" id="user" name="user" type="text" autocomplete="user" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
             </div>
           </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+            <div class="mt-1">
+              <input v-model="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm">
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" @click="submit()">Sign in</button>
+          </div>
         </div>
-        <div class="mt-5 sm:mt-6">
-          <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">Go back to dashboard</button>
-        </div>
+        <p class="mt-4 text-xs">To use Beat my Buddy 4 Peloton, you need to log in with your Peloton account. If you don't have an account yet, you can create one <a href="https://www.onepeloton.de/register" target="_blank" class="underline">here</a>.</p>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { useAuthStore } from "~/stores/auth"
+
+export default {
+  data() {
+    return {
+      user: null,
+      password: null
+    }
+  },
+  methods: {
+    async submit() {
+      useAuthStore().login(this.user, this.password)
+        // .then((response) => response.json())
+        .then((data) => console.log(data))
+    }
+  }
+}
+</script>
