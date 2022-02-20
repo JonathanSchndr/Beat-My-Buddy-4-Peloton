@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   mode: "jit",
   content: [
@@ -9,10 +11,16 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        rose: colors.rose,
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };
