@@ -5,7 +5,7 @@ export default async (url, params = {}, method = 'GET') => {
         'Content-Type': 'application/json',
         'Cache': 'no-cache'
       },
-      'mode': 'no-cors',
+      // 'mode': 'no-cors',
       'credentials': 'same-origin',
       method
     };
