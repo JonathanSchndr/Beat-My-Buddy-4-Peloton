@@ -73,7 +73,7 @@
                         From: "transform opacity-100 scale-100"
                         To: "transform opacity-0 scale-95"
                     -->
-                    <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
+                    <div class="absolute right-0 hidden w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
                       <div class="py-1" role="none">
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                         <a href="#" class="flex px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="options-menu-0-item-0">
