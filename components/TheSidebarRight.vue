@@ -21,7 +21,6 @@
                   </div>
                   <div class="flex-shrink-0">
                     <button type="button" class="inline-flex items-center px-3 py-0.5 rounded-full bg-rose-50 text-sm font-medium text-rose-700 hover:bg-rose-100">
-                      <!-- Heroicon name: solid/plus-sm -->
                       <svg class="-ml-1 mr-0.5 h-5 w-5 text-rose-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                       </svg>
@@ -30,7 +29,6 @@
                   </div>
                 </li>
 
-                <!-- More people... -->
               </ul>
             </div>
             <div class="mt-6">
@@ -54,7 +52,6 @@
                     <div class="flex mt-2">
                       <span class="inline-flex items-center text-sm">
                         <button type="button" class="inline-flex space-x-2 text-gray-400 hover:text-gray-500">
-                          <!-- Heroicon name: solid/chat-alt -->
                           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
                           </svg>
@@ -65,7 +62,6 @@
                   </div>
                 </li>
 
-                <!-- More posts... -->
               </ul>
             </div>
             <div class="mt-6">
