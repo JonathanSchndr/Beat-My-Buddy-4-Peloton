@@ -22,5 +22,10 @@ export default {
       isAuth: useAuthStore().isAuth
     }
   },
+  watch: {
+    isAuth(newValue) {
+      this.isAuth = newValue
+    }
+  }
 }
 </script>

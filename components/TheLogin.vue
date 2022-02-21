@@ -42,9 +42,14 @@ export default {
   },
   methods: {
     submit() {
-      useAuthStore().login(this.user, this.password)
-        // .then((response) => response.json())
-        .then((data) => console.log(data))
+      useAuthStore().login(this.user, this.password).then((data) => {
+        if (!data) {
+          alert('Login data incorrect.')
+        }
+
+        this.user = null
+        this.password = null
+      })
     }
   }
 }

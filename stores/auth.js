@@ -7,31 +7,30 @@ export const useAuthStore = defineStore('auth', {
     userId: null
   }),
 
-  getters: {
-    isAuth: (state) => state.auth,
-  },
-
   actions: {
-    refreshSession() {
-      const refreshSession = pelotonApi('/auth/check_session', {
-        'session_id': this.sessionId,
-      });
-      return refreshSession
-    },
-    login(user, password) {
-      const login = pelotonApi('/auth/login', {
-        'username_or_email': user,
-        'password': password,
-        'with_pubsub': false
-      }, 'POST');
+    // refreshSession() {
+    //   const refreshSession = useApi('/auth/check_session', {
+    //     'session_id': this.sessionId,
+    //   });
+    //   return refreshSession
+    // },
+    async login(user, password) {
+      const result = await useApi({ method: 'POST', path: '/auth/login', params: { 'username_or_email': user, password, 'with_pubsub': false } })
+      if (result.status === 401) {
+        return false
+      }
 
-      return login
+      this.auth = true
+      this.sessionId = result.session_id
+      this.userId = result.user_id
+
+      return true
     },
-    logout() {
-      const logout = pelotonApi('/auth/logout', {
-        'session_id': this.sessionId,
-      }, 'POST');
-      return logout
-    }
+    // logout() {
+    //   const logout = useApi('/auth/logout', {
+    //     'session_id': this.sessionId,
+    //   }, 'POST');
+    //   return logout
+    // }
   },
 })
