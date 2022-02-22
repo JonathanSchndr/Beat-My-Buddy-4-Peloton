@@ -3,28 +3,28 @@ import { useBody, useCookie, setCookie } from 'h3'
 export default async (req, res) => {
   const body = await useBody(req)
 
-  if(body.path !== '/auth/login') {
-    let pelotonSessionId = useCookie(req, 'peloton_session_id') || null
-    let pelotonUserId = useCookie(req, 'peloton_user_id') || null
+  let options = {
+    'headers': {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Cache': 'no-cache',
+    },
+    'method': body.method,
+  }
 
+  let pelotonSessionId = useCookie(req, 'peloton_session_id') || null
+  let pelotonUserId = useCookie(req, 'peloton_user_id') || null
+
+  if(body.path !== '/auth/login') {
+    options.headers.Cookie = `peloton_session_id=${pelotonSessionId}; peloton_user_id=${pelotonUserId}`
     if(pelotonSessionId === null || pelotonUserId === null) {
       return { 'error': 'You must be logged in to do that.' }
     }
   }
 
-  let options = {
-    'headers': {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Cache': 'no-cache'
-    },
-    'credentials': 'same-origin',
-    'method': body.method,
-  }
-
   let urlParams = ''
   if(body.method === 'GET') {
-    urlParams = '?' + (new URLSearchParams(params)).toString()
+    urlParams = '?' + (new URLSearchParams(body.params)).toString()
   } else if(body.method === 'POST') {
     options.body = JSON.stringify(body.params)
   } else {
@@ -36,7 +36,7 @@ export default async (req, res) => {
 
   if(jsonResult.session_id !== undefined) {
    setCookie(res, 'peloton_session_id', jsonResult.session_id, {
-    // domain: '.onepeloton.com',
+    // domain: 'onepeloton.com',
     httpOnly: true,
     maxAge: 2592000,
     path: '/',
@@ -47,7 +47,7 @@ export default async (req, res) => {
 
   if(jsonResult.user_id !== undefined) {
    setCookie(res, 'peloton_user_id', jsonResult.user_id, {
-    // domain: '.onepeloton.com',
+    // domain: 'onepeloton.com',
     httpOnly: true,
     maxAge: 2592000,
     path: '/',

@@ -21,6 +21,17 @@ export const useAuthStore = defineStore('auth', {
       this.userId = result.user_id
 
       return true
+    },
+    async logout() {
+      const result = await useApi({ method: 'POST', path: '/auth/logout', params: { 'session_id': this.sessionId } })
+
+      localStorage.removeItem('peloton_auth');
+
+      this.auth = false
+      this.sessionId = null
+      this.userId = null
+
+      return true
     }
   },
 })
