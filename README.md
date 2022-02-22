@@ -9,9 +9,9 @@ Pull requests are explicitly welcome. At first it should be possible to monitor 
 
 ## :steam_locomotive: Roadmap
 
-- :construction: Find Peloton users
+- :white_check_mark: Log in with your Peloton account
+- :white_check_mark: Find Peloton users
 - :hourglass: Track the highscore of your friends
-- :hourglass: Log in with your Peloton account
 - :hourglass: Get statistics on Peloton accounts
 - :sparkles: Any other ideas? => Issue / PR
 
