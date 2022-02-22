@@ -19,13 +19,16 @@ import { useAuthStore } from "~/stores/auth"
 export default {
   data() {
     return {
-      isAuth: useAuthStore().isAuth
+      isAuth: true
     }
   },
-  watch: {
-    isAuth(newValue) {
-      this.isAuth = newValue
-    }
+  created() {
+    useAuthStore().$subscribe(async (mutation, state) => {
+      this.isAuth = await state.auth
+    })
+  },
+  mounted() {
+    this.isAuth = localStorage.getItem('peloton_auth');
   }
 }
 </script>

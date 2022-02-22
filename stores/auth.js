@@ -8,29 +8,19 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
-    // refreshSession() {
-    //   const refreshSession = useApi('/auth/check_session', {
-    //     'session_id': this.sessionId,
-    //   });
-    //   return refreshSession
-    // },
     async login(user, password) {
       const result = await useApi({ method: 'POST', path: '/auth/login', params: { 'username_or_email': user, password, 'with_pubsub': false } })
       if (result.status === 401) {
         return false
       }
 
+      localStorage.setItem('peloton_auth', true);
+
       this.auth = true
       this.sessionId = result.session_id
       this.userId = result.user_id
 
       return true
-    },
-    // logout() {
-    //   const logout = useApi('/auth/logout', {
-    //     'session_id': this.sessionId,
-    //   }, 'POST');
-    //   return logout
-    // }
+    }
   },
 })

@@ -44,7 +44,7 @@ export default {
     submit() {
       useAuthStore().login(this.user, this.password).then((data) => {
         if (!data) {
-          alert('Login data incorrect.')
+          alert('Login incorrect.')
         }
 
         this.user = null
