@@ -1,4 +1,7 @@
 export default async (body) => {
+  body.pelotonId = localStorage.getItem('peloton_session_id') || null
+  body.userId = localStorage.getItem('peloton_user_id') || null
+
   let options = {
     'headers': {
       'Accept': 'application/json',
