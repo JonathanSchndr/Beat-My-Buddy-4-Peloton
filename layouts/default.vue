@@ -2,7 +2,7 @@
   <div class="min-h-full">
     <TheLogin v-if="showAuth" />
     <TheHeader />
-    <main class="max-w-3xl py-10 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+    <main class="max-w-3xl px-4 py-10 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
       <slot />
     </main>
     <TheFooter />
