@@ -1,14 +1,10 @@
 <template>
   <div class="min-h-full">
-    <TheLogin v-if="!isAuth" />
+    <TheLogin v-if="showAuth" />
     <TheHeader />
-    <div class="py-10 blur-lg">
-      <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-        <TheSidebarLeft />
-        <slot />
-        <TheSidebarRight />
-      </div>
-    </div>
+    <main class="max-w-3xl py-10 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+      <slot />
+    </main>
     <TheFooter />
   </div>
 </template>
@@ -19,16 +15,19 @@ import { useAuthStore } from "~/stores/auth"
 export default {
   data() {
     return {
-      isAuth: true
+      showAuth: false
     }
   },
-  created() {
-    useAuthStore().$subscribe(async (mutation, state) => {
-      this.isAuth = await state.auth
-    })
-  },
   mounted() {
-    this.isAuth = localStorage.getItem('peloton_auth');
+    useAuthStore().$patch({
+      auth: localStorage.getItem('peloton_auth') || false,
+      sessionId: localStorage.getItem('peloton_session_id') || false,
+      userId: localStorage.getItem('peloton_user_id') || false
+    })
+
+    useAuthStore().$subscribe(async (mutation, state) => {
+      this.showAuth = await state.showAuth
+    })
   }
 }
 </script>

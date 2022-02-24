@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
+    showAuth: false,
     auth: false,
     sessionId: null,
     userId: null
@@ -18,6 +19,7 @@ export const useAuthStore = defineStore('auth', {
       localStorage.setItem('peloton_session_id', result.session_id)
       localStorage.setItem('peloton_user_id', result.user_id)
 
+      this.showAuth = false
       this.auth = true
       this.sessionId = result.session_id
       this.userId = result.user_id
@@ -31,6 +33,7 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('peloton_session_id')
       localStorage.removeItem('peloton_user_id')
 
+      this.showAuth = false
       this.auth = false
       this.sessionId = null
       this.userId = null

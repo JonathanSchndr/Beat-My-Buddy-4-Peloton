@@ -10,13 +10,13 @@
     <div v-if="value.length > 3" class="absolute z-50 w-full bg-white shadow-2xl rounded-b-xl">
       <ul v-if="users.total > 0" class="p-3 overflow-y-auto max-h-96 scroll-py-3">
         <li v-for="user in users.data" :key="user.id">
-          <nuxt-link :to="`/user/${user.username}`" class="flex p-3 cursor-pointer select-none hover:bg-gray-100 group rounded-xl">
+          <button @click="submit()" class="flex w-full p-3 text-left cursor-pointer select-none hover:bg-gray-100 group rounded-xl">
             <img :src="user.image_url" class="w-10 h-10 rounded-full" />
             <div class="flex-auto ml-4">
               <p class="text-sm font-medium text-gray-700">{{ user.username }}</p>
               <p class="text-sm text-gray-500">Peloton ID: {{ user.id }}</p>
             </div>
-          </nuxt-link>
+          </button>
         </li>
       </ul>
 
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { useAuthStore } from "~/stores/auth"
+
 export default {
   data() {
     return {
@@ -44,22 +46,29 @@ export default {
   },
   methods: {
     searching() {
-      if(this.value.length > 3) {
-        useApi({
-          method: 'GET',
-          path: '/api/user/search',
-          params: {
-            user_query: this.value,
-            limit: 10
-          }
-        }).then((data) => {
-          this.users = data
-          console.log(data)
-        });
+      if(useAuthStore().auth) {
+        if(this.value.length > 3) {
+          useApi({
+            method: 'GET',
+            path: '/api/user/search',
+            params: {
+              user_query: this.value,
+              limit: 10
+            }
+          }).then((data) => {
+            this.users = data
+          });
+        }
+      } else {
+        this.value = '',
+        this.$router.push('/')
+        useAuthStore().$patch({
+          showAuth: true,
+        })
       }
     },
     submit() {
-      this.$router.push({path: `/user/${this.value}`});
+      this.$router.push(`/user/${this.value}`);
       this.value = ''
       this.users = { data: [], total: 0 }
     }
