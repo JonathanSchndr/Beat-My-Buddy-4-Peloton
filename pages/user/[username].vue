@@ -84,20 +84,19 @@ export default {
     }
   },
   mounted() {
-    if(useAuthStore().auth) {
-      useApi({
-        method: 'GET',
-        path: '/api/user/' + this.$route.params.username,
-      }).then((data) => {
-        this.user = data
-        console.log(this.user)
-      });
-    } else {
-      this.$router.push('/')
-      useAuthStore().$patch({
-        showAuth: true,
-      })
-    }
+    useApi({
+      method: 'GET',
+      path: '/api/user/' + this.$route.params.username,
+    }).then((data) => {
+      this.user = data
+      if(this.user.status === 401) {
+        this.$router.push('/')
+        useAuthStore().$patch({
+          showAuth: true
+        })
+      }
+      console.log(this.user) // TODO ADD DATA
+    });
   }
 }
 </script>

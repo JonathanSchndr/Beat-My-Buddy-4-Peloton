@@ -15,7 +15,7 @@ export default async (req, res) => {
   if(body.path !== '/auth/login') {
     options.headers.Cookie = `peloton_session_id=${body.pelotonId}; peloton_user_id=${body.userId}`
     if(body.pelotonId === null || body.userId === null) {
-      return { 'error': 'You must be logged in to do that.' }
+      return { status: 401, 'error': 'You must be logged in to do that.' }
     }
   }
 
@@ -24,8 +24,6 @@ export default async (req, res) => {
     urlParams = '?' + (new URLSearchParams(body.params)).toString()
   } else if(body.method === 'POST') {
     options.body = JSON.stringify(body.params)
-  } else {
-    return { 'error': 'Unsupported method.' }
   }
 
   const result = await fetch(`https://api.onepeloton.com${body.path}${urlParams}`, options)

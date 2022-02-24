@@ -21,12 +21,12 @@ export default {
   mounted() {
     useAuthStore().$patch({
       auth: localStorage.getItem('peloton_auth') || false,
-      sessionId: localStorage.getItem('peloton_session_id') || false,
-      userId: localStorage.getItem('peloton_user_id') || false
+      sessionId: localStorage.getItem('peloton_session_id') || null,
+      userId: localStorage.getItem('peloton_user_id') || null
     })
 
-    useAuthStore().$subscribe(async (mutation, state) => {
-      this.showAuth = await state.showAuth
+    useAuthStore().$subscribe((mutation, state) => {
+      this.showAuth = state.showAuth
     })
   }
 }
